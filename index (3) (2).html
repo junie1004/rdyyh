@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>신생대의 환경과 생물</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans KR','Malgun Gothic',system-ui,sans-serif;background:#0f1722;color:#eef3ff}
+header{text-align:center;padding:48px 5vw 20px;background:linear-gradient(#1b2b45,#0f1722)}
+h1{margin:0;font-size:clamp(1.8rem,5vw,3rem)}header p{opacity:.8;margin:8px 0}
+nav{position:sticky;top:0;z-index:20;background:#0f1722ee;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:8px}
+nav a{color:#cfe;text-decoration:none;font-size:.85rem;padding:4px 10px;border:1px solid #345;border-radius:20px}
+section{max-width:1000px;margin:auto;padding:44px 5vw}
+h2{margin:0 0 14px;font-size:1.5rem}h2 b{background:#e4572e;border-radius:50%;padding:2px 10px;margin-right:8px}
+svg{width:100%;height:auto;display:block}.cap{font-size:.95rem;line-height:1.6;margin:8px 0;max-width:62ch}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 280px}
+.chip{display:inline-block;background:#ffffff1f;border:1px solid #fff4;border-radius:14px;padding:6px 12px;margin:4px 4px 0 0;font-size:.88rem;line-height:1.5}
+button{background:#e4572e;color:#fff;border:0;border-radius:8px;padding:8px 16px;font-size:.95rem;cursor:pointer;margin:6px 6px 6px 0}
+input[type=range]{width:100%}
+#tip{position:fixed;pointer-events:none;background:#000d;color:#fff;padding:4px 10px;border-radius:6px;font-size:.85rem;display:none;z-index:50}
+#pop{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:60;padding:20px}
+#pop div{background:#fff;color:#123;max-width:460px;padding:22px;border-radius:14px;line-height:1.6;animation:zi .3s}
+#pop h3{margin:0 0 8px}@keyframes zi{from{transform:scale(.6);opacity:0}}
+[data-info]{cursor:pointer}[data-info]:hover{filter:brightness(1.2)}
+#s2{transition:background .3s;border-radius:16px}
+.cards{display:flex;gap:16px;flex-wrap:wrap}.ac{flex:1 1 220px;background:#ffffff14;border-radius:14px;padding:12px;cursor:pointer;transition:transform .4s,flex-basis .4s;border:2px solid #fff3}
+.ac .d{max-height:0;overflow:hidden;transition:max-height .5s;font-size:.9rem;line-height:1.6}
+.ac.open{flex-basis:100%;transform:scale(1.02);border-color:#ffd166}.ac.open .d{max-height:300px}
+.fl{animation:fl 5s ease-in-out infinite alternate}@keyframes fl{to{transform:translate(var(--dx),var(--dy))}}
+.fish{animation:sw 8s linear infinite}@keyframes sw{from{transform:translateX(-60px)}to{transform:translateX(640px)}}
+.gr{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform 2.5s ease-out}
+.on .gr{transform:scaleY(1)}.on .sp{opacity:0}.sp{transition:opacity .5s;animation:bob 1.5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(-4px)}}
+.gone{opacity:0;transform:translateY(20px);transition:all 1s}.ic{transition:all 1s}
+.cz{animation:pu 2s ease-in-out infinite alternate}@keyframes pu{to{transform:translate(var(--px),var(--py))}}
+.pulse{animation:pl 1.5s ease-in-out infinite alternate}@keyframes pl{to{opacity:.5}}
+footer{background:#0a0f18;padding:30px 5vw;font-size:.85rem;line-height:1.7;text-align:center}
+footer div{max-width:900px;margin:auto;text-align:left}
+</style></head><body>
+<div id="tip"></div><div id="pop"><div></div></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="mam" viewBox="0 0 120 80"><g fill="#6b4a2f"><ellipse cx="64" cy="38" rx="38" ry="24"/><ellipse cx="34" cy="30" rx="20" ry="22"/><rect x="40" y="54" width="10" height="24" rx="4"/><rect x="60" y="56" width="10" height="22" rx="4"/><rect x="80" y="56" width="10" height="22" rx="4"/><rect x="94" y="52" width="9" height="24" rx="4"/></g><path d="M18 36Q6 56 14 70Q19 74 21 68Q15 56 22 42Z" fill="#553823"/><path d="M22 46Q2 52 8 68Q12 58 26 52Z" fill="#f4ecd8"/><path d="M42 60q-3 8 0 14M64 62q-3 8 0 12M84 62q-3 8 0 12" stroke="#4a2f1c" stroke-width="3" fill="none"/><circle cx="30" cy="26" r="2.5" fill="#fff"/></symbol>
+<symbol id="num" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#d8c9a0" stroke="#8a7a50" stroke-width="2"/><circle cx="20" cy="20" r="12" fill="none" stroke="#8a7a50"/><circle cx="20" cy="20" r="6" fill="none" stroke="#8a7a50"/><circle cx="20" cy="20" r="2" fill="#8a7a50"/></symbol>
+<symbol id="big" viewBox="0 0 100 70"><g fill="#8a5a3a"><ellipse cx="55" cy="32" rx="34" ry="20"/><ellipse cx="22" cy="30" rx="14" ry="14"/><rect x="32" y="46" width="8" height="22" rx="3"/><rect x="50" y="48" width="8" height="20" rx="3"/><rect x="68" y="48" width="8" height="20" rx="3"/><rect x="80" y="44" width="8" height="22" rx="3"/></g><path d="M16 18Q10 8 18 6M28 18Q34 8 28 6" stroke="#eee" stroke-width="3" fill="none"/></symbol>
+<symbol id="hum" viewBox="0 0 40 90"><circle cx="20" cy="10" r="8" fill="#f0b27a"/><path d="M20 18V55M20 28L6 46M20 28L34 46M20 55L8 86M20 55L32 86" stroke="#f0b27a" stroke-width="6" stroke-linecap="round" fill="none"/></symbol>
+</defs></svg>
+
+<header><h1>🌍 신생대의 환경과 생물</h1><p>보고, 누르고, 움직여 보자!</p></header>
+<nav><a href="#s1">① 시대 구분</a><a href="#s2">② 기후</a><a href="#s3">③ 대기·해양</a><a href="#s4">④ 수륙 분포</a><a href="#s5">⑤ 동물</a><a href="#s6">⑥ 식물</a><a href="#s7">⑦ 표준화석</a><a href="#s8">⑧ 시대 말</a></nav>
+
+<section id="s1"><h2><b>1</b>시대 구분</h2>
+<div class="row"><svg viewBox="0 0 400 420" id="pie"></svg>
+<div><p class="cap">약 6600만년 전에 시작하여 현재도 진행중이다.</p><p class="cap">신생대는 지구 전체역사에서 <b>1.4%</b>밖에 차지하지않는다. (튀어나온 조각을 눌러 보자!)</p><div id="leg"></div></div></div>
+<p class="cap">이 시대를 나누는 기준이 된 사건</p>
+<svg viewBox="0 0 700 150">
+<g data-tip="중생대: 공룡 지배" data-info="중생대|공룡이 지배하던 시대"><rect x="5" y="10" width="200" height="130" rx="12" fill="#c9a22733" stroke="#c9a227"/><path d="M30 100Q50 60 90 70Q110 30 130 25L140 32Q120 45 125 75Q160 85 190 120L170 112Q130 100 110 108L100 125H88L90 108Q60 110 50 125H38Z" fill="#c9a227"/><text x="105" y="22" fill="#fff" font-size="13" text-anchor="middle">중생대 · 공룡이 지배</text></g>
+<g data-tip="대멸종" data-info="대멸종|공룡이 사라진 사건. 이것이 중생대와 신생대를 나누는 기준이 되었다."><rect x="250" y="10" width="200" height="130" rx="12" fill="#e4572e33" stroke="#e4572e"/><g class="pulse"><circle cx="350" cy="80" r="26" fill="#ff9f1c"/><path d="M350 38L358 68L388 60L366 82L390 104L358 94L350 124L342 94L310 104L334 82L312 60L342 68Z" fill="#e4572e"/></g><text x="350" y="30" fill="#fff" font-size="13" text-anchor="middle">대멸종</text></g>
+<g data-tip="신생대: 포유류 번성" data-info="신생대|포유류가 번성한 시대"><rect x="495" y="10" width="200" height="130" rx="12" fill="#4a7c5933" stroke="#6fcf97"/><use href="#mam" x="530" y="50" width="130" height="80"/><text x="595" y="30" fill="#fff" font-size="13" text-anchor="middle">신생대 · 포유류 번성</text></g>
+<path d="M210 75H245M455 75H490" stroke="#fff" stroke-width="3" marker-end="url(#ar)"/><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#fff"/></marker></defs></svg></section>
+
+<section id="s2"><h2><b>2</b>기후 — 슬라이더로 시대 이동</h2>
+<input type="range" id="sl" min="0" max="66" value="66"><div class="cap" id="tl"></div>
+<div class="row"><svg viewBox="0 0 600 170" id="cg"></svg><svg viewBox="0 0 120 200" style="max-width:150px;margin:auto"><rect x="50" y="10" width="20" height="150" rx="10" fill="#fff3" stroke="#fff"/><circle cx="60" cy="168" r="22" id="tc" fill="#e4572e"/><rect x="54" y="160" width="12" height="0" id="tb" fill="#e4572e"/><g id="sn" opacity="0" fill="#bfe9ff" font-size="22"><text x="5" y="40">❄</text><text x="85" y="80">❄</text><text x="10" y="120">❄</text></g></svg></div>
+<p class="cap" id="ct"></p>
+<span class="chip">🔴 따뜻한 시기 = 붉은색</span><span class="chip">🔵 추운 시기 = 파란색</span>
+<p class="cap">처음에는 매우 따뜻 → 점차 추워짐<br>약 6000만년 전 ~ 약 4000만년 전: 온실기후<br>약 258만년 전부터 제4기가 시작 (빙하기)</p></section>
+
+<section id="s3"><h2><b>3</b>대기·해양 환경 — 슬라이더: 초기 → 현재</h2>
+<input type="range" id="a3" min="0" max="100" value="0">
+<svg viewBox="0 0 600 270" id="atm"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4a7a"/><stop offset="1" stop-color="#8fc3e8"/></linearGradient></defs>
+<rect width="600" height="270" fill="url(#sk)"/><g id="mols"></g>
+<path d="M0 270V150Q40 130 90 150Q130 165 150 270ZM450 270Q470 160 520 150Q570 135 600 150V270Z" fill="#7a5c3a"/>
+<g id="ice" opacity="0"><ellipse cx="30" cy="146" rx="40" ry="8" fill="#fff"/><ellipse cx="570" cy="146" rx="40" ry="8" fill="#fff"/></g>
+<rect id="sea" x="0" y="125" width="600" height="145" fill="#1b6ca8" opacity=".78"/><line id="sl2" x1="0" x2="600" y1="125" y2="125" stroke="#fff" stroke-dasharray="6 4"/>
+<g class="fish" data-tip="물고기"><ellipse cx="0" cy="230" rx="14" ry="6" fill="#ffd166"/><path d="M-12 230L-22 223V237Z" fill="#ffd166"/></g>
+<text x="10" y="20" fill="#fff" font-size="13" id="gl1"></text><text x="10" y="40" fill="#fff" font-size="13" id="gl2"></text><text x="300" y="262" fill="#fff" font-size="13" text-anchor="middle" id="gl3"></text></svg>
+<span class="chip">⚪ 회색·붉은 3개 = CO₂ &nbsp; 🔵 파란 2개 = O₂</span>
+<p class="cap">산소: 중생대 말 대멸종 이후 하락과 변동을 거쳤고, 신생대에는 대략 15%~25% 사이를 안정적으로 오가며 점차 현재의 약 21%로 수렴했다.</p>
+<p class="cap">이산화탄소: 신생대 초기(약 5,000만~6,000만 년 전) 에오세기 최적기(EECO) 등을 거치며 1,000~1,600 ppm에 달할 만큼 매우 높았다.</p>
+<p class="cap">바다: 지구 역사상 가장 따뜻했던 온실 바다에서 출발해, 대륙 이동과 기후 냉각을 거치며 차가운 극지방과 역동적인 순환 체계를 갖춘 오늘날의 바다로 완성되었다.</p></section>
+
+<section id="s4"><h2><b>4</b>수륙 분포 — 인도-유라시아판 충돌</h2>
+<button id="pl4">▶ 재생 / 다시</button><input type="range" id="a4" min="0" max="100" value="0">
+<svg viewBox="0 0 600 290" style="background:#16496e;border-radius:12px">
+<g id="am" data-tip="아메리카" ><path d="M0 40L110 40L130 120L90 280L40 280L20 150Z" fill="#6fa86f"/><text x="30" y="150" fill="#fff" font-size="13">아메리카</text></g>
+<text x="190" y="170" fill="#fff" font-size="12" id="atl" opacity=".8">← 대서양 확장 →</text>
+<path d="M230 150L300 150L320 220L290 280L250 250Z" fill="#8fbf6a" data-tip="아프리카"/>
+<path id="eu" d="M230 20L590 20L590 125L420 125Q380 135 330 125L230 125Z" fill="#a0c46a" data-tip="유라시아판"/><text x="400" y="60" fill="#123" font-size="15" font-weight="bold">유라시아판</text>
+<g id="in"><path d="M400 190L480 190L440 262Z" fill="#e4a94a" data-tip="인도 대륙(인도판)"/><text x="415" y="212" fill="#123" font-size="13">인도판</text><path d="M440 280V268" stroke="#fff" stroke-width="3" marker-end="url(#ar)"/></g>
+<g id="hi" opacity="0"><path d="M395 128L415 85L430 112L450 70L470 112L490 90L500 128Z" fill="#8a7a6a" stroke="#fff"/><path d="M445 82L450 70L456 82Z" fill="#fff"/></g>
+<circle id="fl" cx="440" cy="125" r="0" fill="#ffd166" opacity=".7"/>
+<text id="t4" x="300" y="284" fill="#fff" font-size="13" text-anchor="middle"></text></svg>
+<p class="cap">대륙의 배치: 대서양의 지속적인 확장과 인도 대륙의 압착 속에서, 대륙들은 현재의 5대양 6대주 배치와 거의 일치하는 최종 위치에 도달했다.</p>
+<p class="cap">지각 변동: 인도 대륙이 북쪽으로 빠르게 이동하여 유라시아판과 정면으로 강력하게 충돌했다.</p></section>
+
+<section id="s5"><h2><b>5</b>대표 동물 — 카드를 눌러 보자</h2>
+<svg viewBox="0 0 600 260"><rect width="600" height="130" fill="#bfe3ff"/><rect y="130" width="600" height="130" fill="#6b4a2f"/><path d="M0 130H340Q380 100 420 130H600V130Z" fill="#fff"/><rect y="130" width="600" height="14" fill="#7fbf6a"/>
+<rect x="340" y="130" width="260" height="130" fill="#1b6ca8"/><rect x="340" y="100" width="260" height="30" fill="#bfe3ff" opacity="0"/><text x="30" y="20" font-size="14" fill="#123">육지 ❄ 추운 기후</text><text x="470" y="160" font-size="14" fill="#fff">바다</text>
+<g data-tip="매머드 (육상)" data-info="매머드 (육상생물)|몸에 두꺼운 털과 긴 송곳니(엄니)가 발달하여 추운 기후에 적응함."><use href="#mam" x="100" y="45" width="190" height="120"/></g>
+<g data-tip="화폐석 (해양)" data-info="화폐석 (해양생물)|동전처럼 둥근 껍데기 화석. 신생대의 표준화석이다."><use href="#num" x="400" y="215" width="34" height="34"/><use href="#num" x="470" y="225" width="26" height="26"/><use href="#num" x="530" y="212" width="36" height="36"/></g></svg>
+<div class="cards"><div class="ac"><svg viewBox="0 0 120 80" style="max-height:90px"><use href="#mam" width="120" height="80"/></svg><b>매머드 · 육상생물</b><div class="d">몸에 두꺼운 털과 긴 송곳니(엄니)가 발달하여 추운 기후에 적응함.</div></div>
+<div class="ac"><svg viewBox="0 0 40 40" style="max-height:90px"><use href="#num" width="40" height="40"/></svg><b>화폐석 · 해양생물</b><div class="d">바다에 살던 동전 모양 생물의 화석. 표준화석(⑦)으로 쓰인다.</div></div></div>
+<p class="cap">번성한 이유: 중생대 대멸종 이후 공룡이 사라지면서 포유류가 적응 방산을 통해 다양한 생태적 지위를 차지함.</p></section>
+
+<section id="s6"><h2><b>6</b>대표 식물 — 새싹을 눌러 보자</h2>
+<svg viewBox="0 0 600 260"><rect width="600" height="260" fill="#bfe3ff"/><circle cx="540" cy="45" r="26" fill="#ffd166"/><path d="M0 200Q150 150 300 200T600 190V260H0Z" fill="#5d9c4e"/><rect y="200" width="600" height="60" fill="#6b4a2f"/>
+<g class="pl" transform="translate(110 205)" id="p1"><g class="gr"><rect x="-7" y="-100" width="14" height="100" fill="#6b4a2f"/><circle cx="0" cy="-120" r="42" fill="#d9531e"/><circle cx="-30" cy="-95" r="28" fill="#e4572e"/><circle cx="30" cy="-95" r="28" fill="#f0883e"/></g><g class="sp" data-tip="새싹 → 단풍나무" data-info="속씨식물: 단풍나무|꽃과 열매를 맺어 씨앗을 보호하며, 곤충·동물을 이용한 수분 작용으로 번식력이 뛰어남."><ellipse cx="-6" cy="-8" rx="8" ry="4" fill="#4caf50"/><ellipse cx="6" cy="-10" rx="8" ry="4" fill="#66bb6a"/><rect x="-1" y="-10" width="2" height="10" fill="#388e3c"/></g></g>
+<g class="pl" transform="translate(300 205)" id="p2"><g class="gr"><rect x="-8" y="-90" width="16" height="90" fill="#5a3d26"/><circle cx="0" cy="-115" r="45" fill="#2e7d32"/><circle cx="-34" cy="-90" r="30" fill="#388e3c"/><circle cx="34" cy="-90" r="30" fill="#43a047"/></g><g class="sp" data-tip="새싹 → 참나무" data-info="속씨식물: 참나무|꽃과 열매를 맺어 씨앗을 보호하며, 곤충·동물을 이용한 수분 작용으로 번식력이 뛰어남."><ellipse cx="-6" cy="-8" rx="8" ry="4" fill="#4caf50"/><ellipse cx="6" cy="-10" rx="8" ry="4" fill="#66bb6a"/><rect x="-1" y="-10" width="2" height="10" fill="#388e3c"/></g></g>
+<g class="pl" transform="translate(480 205)" id="p3"><g class="gr"><path d="M-30 0Q-32 -40 -40 -50M-15 0Q-14 -45 -20 -65M0 0Q2 -50 0 -70M15 0Q14 -45 22 -60M30 0Q34 -35 42 -48" stroke="#4caf50" stroke-width="4" fill="none"/><circle cx="0" cy="-72" r="7" fill="#ff6b9d"/><circle cx="-20" cy="-67" r="6" fill="#ffd166"/><circle cx="22" cy="-62" r="6" fill="#fff"/></g><g class="sp" data-tip="새싹 → 풀류" data-info="속씨식물: 풀류|꽃과 열매를 맺어 씨앗을 보호하며, 곤충·동물을 이용한 수분 작용으로 번식력이 뛰어남."><ellipse cx="-6" cy="-8" rx="8" ry="4" fill="#4caf50"/><ellipse cx="6" cy="-10" rx="8" ry="4" fill="#66bb6a"/><rect x="-1" y="-10" width="2" height="10" fill="#388e3c"/></g></g></svg>
+<p class="cap">속씨식물(예: 단풍나무, 참나무, 풀류): 꽃과 열매를 맺어 씨앗을 보호하며, 곤충 및 동물을 이용한 수분 작용으로 번식력이 뛰어남.</p>
+<svg viewBox="0 0 600 150"><g data-tip="고생대: 양치식물" data-info="고생대|양치식물의 시대"><rect x="5" y="5" width="185" height="140" rx="10" fill="#4a7c5944"/><path d="M95 130Q90 70 95 30M95 110Q70 100 55 80M95 90Q70 80 60 60M95 70Q75 60 68 45M95 110Q120 100 135 80M95 90Q120 80 130 60M95 70Q115 60 122 45" stroke="#6fcf97" stroke-width="4" fill="none"/><text x="97" y="145" fill="#fff" font-size="13" text-anchor="middle">고생대 · 양치식물</text></g>
+<g data-tip="중생대: 겉씨식물" data-info="중생대|겉씨식물의 시대"><rect x="205" y="5" width="185" height="140" rx="10" fill="#c9a22733"/><rect x="295" y="95" width="6" height="30" fill="#6b4a2f"/><path d="M298 25L265 65H331ZM298 50L258 92H338Z" fill="#2e7d32"/><text x="298" y="145" fill="#fff" font-size="13" text-anchor="middle">중생대 · 겉씨식물</text></g>
+<g data-tip="신생대: 속씨식물 크게 번성" data-info="신생대|고생대(양치식물), 중생대(겉씨식물)에 비해 속씨식물이 크게 번성함."><rect x="405" y="5" width="190" height="140" rx="10" fill="#e4572e33" stroke="#ffd166" stroke-width="3"/><rect x="498" y="70" width="5" height="50" fill="#388e3c"/><g fill="#ff6b9d"><circle cx="500" cy="40" r="14"/><circle cx="520" cy="55" r="14"/><circle cx="480" cy="55" r="14"/><circle cx="510" cy="72" r="14"/><circle cx="490" cy="72" r="14"/></g><circle cx="500" cy="57" r="9" fill="#ffd166"/><text x="500" y="145" fill="#fff" font-size="13" text-anchor="middle">신생대 · 속씨식물 ↑↑</text></g></svg>
+<p class="cap">고생대(양치식물) 및 중생대(겉씨식물)에 비해 속씨식물이 크게 번성함.</p></section>
+
+<section id="s7"><h2><b>7</b>표준화석 — 매머드, 화폐석</h2>
+<svg viewBox="0 0 600 300"><rect y="20" width="600" height="70" fill="#d9b77e" class="pulse"/><rect y="90" width="600" height="60" fill="#8fa37a"/><rect y="150" width="600" height="65" fill="#7a6a5a"/><rect y="215" width="600" height="85" fill="#5a4a6a"/>
+<g font-size="14" fill="#123" font-weight="bold"><text x="10" y="42">신생대 지층 ★</text><text x="10" y="112" fill="#fff">중생대 지층</text><text x="10" y="172" fill="#fff">고생대 지층</text><text x="10" y="236" fill="#fff">그 아래 오래된 지층</text></g>
+<g data-tip="매머드 화석" data-info="매머드 화석|이 화석이 나오면 신생대 지층임을 알 수 있다."><use href="#mam" x="170" y="28" width="110" height="68"/></g>
+<g data-tip="화폐석 화석" data-info="화폐석 화석|이 화석이 나오면 신생대 지층임을 알 수 있다."><use href="#num" x="330" y="40" width="30" height="30"/><use href="#num" x="390" y="55" width="22" height="22"/><use href="#num" x="440" y="36" width="28" height="28"/></g>
+<path d="M560 4V40" stroke="#ffd166" stroke-width="4" marker-end="url(#ar)"/><text x="590" y="16" fill="#ffd166" font-size="12" text-anchor="end">표준화석은 여기서!</text></svg>
+<div><span class="chip" data-tip="조건 ①">① 생존 기간이 짧다 → 신생대는 지질 시대 중 가장 짧다</span><span class="chip" data-tip="조건 ②">② 개체 수가 많다</span><span class="chip" data-tip="조건 ③">③ 분포 면적이 넓다 → 넓은 지역에서 발견</span><span class="chip" data-tip="조건 ④">④ 형태가 뚜렷하다 → 식별하기 쉽다</span></div>
+<p class="cap">네 가지 조건을 모두 충족하여 신생대의 표준화석이 된다.</p>
+<p class="cap">알 수 있는 것: 해당 지층이 신생대에 형성된 지층임, 그리고 당시의 퇴적 시기와 지구 환경.</p></section>
+
+<section id="s8"><h2><b>8</b>시대 말 사건</h2>
+<button id="b8">❄ 빙하기 시작</button><button id="r8">↺ 처음으로</button>
+<svg viewBox="0 0 600 260" style="background:#1d3550;border-radius:12px"><path id="zz" d="M10 40L70 15L130 60L190 15L250 70L310 18L370 75L430 20L490 80L590 90" stroke="#9fd8ff" stroke-width="3" fill="none" stroke-dasharray="900" stroke-dashoffset="0"/><text x="10" y="105" fill="#9fd8ff" font-size="12">빙하기 ↔ 간빙기 반복</text>
+<rect y="215" width="600" height="45" fill="#e8f4ff"/>
+<g id="ics"><g class="ic" data-tip="매머드"><use href="#mam" x="10" y="130" width="120" height="80"/></g><g class="ic" data-tip="대형 포유류"><use href="#big" x="140" y="145" width="100" height="70"/></g><g class="ic" data-tip="매머드"><use href="#mam" x="250" y="140" width="110" height="74"/></g><g class="ic" data-tip="대형 포유류"><use href="#big" x="370" y="145" width="90" height="64"/></g></g>
+<g id="hm" class="ic" style="opacity:0" data-tip="인류의 조상"><use href="#hum" x="500" y="130" width="40" height="90"/></g>
+<text id="t8" x="300" y="248" fill="#123" font-size="13" text-anchor="middle">대형 포유류가 하나씩 사라진다…</text></svg>
+<p class="cap">신생대 제4기 말: 반복되는 빙하기와 간빙기 속에서 환경이 변했고, 적응하지 못한 매머드 등 대형 포유류가 대거 멸종했다. 또한 인류의 조상이 등장하고 범지구적으로 확산되었다.</p>
+<span class="chip">🌡 급격한 기후 변화 (빙하기·간빙기 반복, 기온 급감)</span><span class="chip">🌿 서식지 감소, 식생 변화</span><span class="chip">🏹 인류의 등장으로 인한 과도한 수렵</span></section>
+
+<footer><div><b>📚 참고 자료 (출처)</b><br>· 한국지질자원연구원 지질박물관, 「한반도에 널린 지질시대 증거들」<br>· 고기후학 및 지질학 학술 연구: 심해저 시추 코어 분석을 통한 산소·탄소 동위원소 데이터, 남극 및 그린란드 빙하 코어 분석 결과 등 과거 지구 환경을 복원한 전문 학술 논문<br>· 국제 과학 및 기상 기관 데이터: IPCC(정부 간 기후변화 협의체) 기후 변화의 역사적 맥락과 온실가스 변동 데이터 / NOAA(미국 해양대기청)·USGS(미국 지질조사국) 대기 중 이산화탄소와 산소 농도의 지질 시대별 추이 자료 / ICS(국제층서학위원회) 신생대 지질 시대 구분 및 판 구조 운동 연대기 표준<br><br><b>👥 만든 사람</b>: 4반 5조 — 김영주, 서현준, 이석영, 임준우</div></footer>
+
+<script>
+const $=s=>document.querySelector(s),NS='http://www.w3.org/2000/svg';
+const tip=$('#tip'),pop=$('#pop');
+document.addEventListener('mousemove',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(t){tip.textContent=t.dataset.tip;tip.style.display='block';tip.style.left=e.clientX+12+'px';tip.style.top=e.clientY+12+'px'}else tip.style.display='none'});
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-info]');if(t){const[a,b]=t.dataset.info.split('|');pop.firstChild.innerHTML='<h3>'+a+'</h3>'+b;pop.style.display='flex'}else if(pop.contains(e.target))pop.style.display='none';
+const c=e.target.closest&&e.target.closest('.ac');if(c)c.classList.toggle('open');const p=e.target.closest&&e.target.closest('.pl');if(p&&e.target.closest('.sp'))p.classList.add('on')});
+/* 1 pie */
+const D=[['선캄브리아시대',88.2,'#6c5b7b'],['고생대',6.3,'#4a7c59'],['중생대',4.0,'#c9a227'],['신생대',1.4,'#e4572e']];
+(()=>{let a=0,h='';const P=(a,r)=>[200+r*Math.sin(a),220-r*Math.cos(a)];
+D.forEach(([n,v,c],i)=>{const b=a+v/100*2*Math.PI,[x1,y1]=P(a,170),[x2,y2]=P(b,170),m=(a+b)/2,z=i==3;
+h+=`<path d="M200 220L${x1} ${y1}A170 170 0 ${v>50?1:0} 1 ${x2} ${y2}Z" fill="${c}" stroke="#0f1722" stroke-width="2" data-tip="${n}" ${z?`class="cz" style="--px:${Math.sin(m)*26}px;--py:${-Math.cos(m)*26}px" data-info="신생대|약 6600만년 전 시작, 지구 전체역사의 1.4%"`:''}/>`;
+$('#leg').innerHTML+=`<span class="chip" style="border-color:${c}">■ ${n}</span>`;a=b});
+h+='<text x="200" y="30" fill="#ffd166" font-size="16" text-anchor="middle">신생대 1.4% ↓</text>';$('#pie').innerHTML=h})();
+/* 2 climate */
+const K=[[66,.7],[60,.85],[50,1],[40,.8],[34,.45],[15,.5],[5,.35],[2.58,.2],[0,.12]];
+const tp=t=>{for(let i=0;i<K.length-1;i++){const[a,x]=K[i],[b,y]=K[i+1];if(t<=a&&t>=b)return x+(y-x)*(a-t)/(a-b)}return .12};
+(()=>{let d='';for(let t=66;t>=0;t-=1)d+=((66-t)/66*560+20)+','+(150-tp(t)*120)+' ';
+$('#cg').innerHTML=`<polyline points="${d}" fill="none" stroke="#fff" stroke-width="3"/><circle id="mk" r="7" fill="#ffd166"/><text x="20" y="165" fill="#fff" font-size="12">6600만년 전</text><text x="580" y="165" fill="#fff" font-size="12" text-anchor="end">현재</text>`})();
+function clim(){const t=+$('#sl').value,v=tp(t),r=Math.round(50+170*v),g=Math.round(110-50*v),b=Math.round(200-150*v);
+$('#s2').style.background=`linear-gradient(135deg,rgb(${r},${g},${b}),#0f1722)`;
+$('#mk').setAttribute('cx',(66-t)/66*560+20);$('#mk').setAttribute('cy',150-v*120);
+$('#tb').setAttribute('y',160-v*140);$('#tb').setAttribute('height',v*140);$('#tc').setAttribute('fill',`rgb(${r},${g},${b})`);$('#tb').setAttribute('fill',`rgb(${r},${g},${b})`);
+$('#sn').setAttribute('opacity',t<=2.58?1:0);
+$('#tl').innerHTML='<b>'+(t==0?'현재':'약 '+t+'백만년 전(Ma)')+'</b>';
+$('#ct').textContent=t<=2.58?'❄ 제4기: 빙하기가 시작된 시기':t<=34?'점점 추워지는 중':t<=60?'🔥 온실기후 (약 6000만~4000만년 전)':'처음에는 매우 따뜻'}
+$('#sl').oninput=clim;clim();
+/* 3 atmosphere */
+const co=[],ox=[];
+(()=>{let h='';for(let i=0;i<48;i++){const o=i>=36,x=20+Math.random()*560,y=55+Math.random()*60;
+h+=`<g transform="translate(${x} ${y})" id="${o?'o':'c'}${o?i-36:i}"><g class="fl" style="--dx:${(Math.random()*40-20)|0}px;--dy:${(Math.random()*20-10)|0}px;animation-delay:-${Math.random()*5}s">${o?'<circle cx="-5" r="6" fill="#4fc3f7"/><circle cx="5" r="6" fill="#4fc3f7"/>':'<circle cx="-9" r="5" fill="#e53935"/><circle r="6" fill="#888"/><circle cx="9" r="5" fill="#e53935"/>'}</g></g>`}
+$('#mols').innerHTML=h})();
+function atm(){const s=+$('#a3').value;
+for(let i=0;i<36;i++)$('#c'+i).style.display=i<36-24*s/100?'':'none';
+for(let i=0;i<12;i++)$('#o'+i).style.display=i<8+0.04*s?'':'none';
+const y=125+s*.4;$('#sea').setAttribute('y',y);$('#sl2').setAttribute('y1',y);$('#sl2').setAttribute('y2',y);$('#ice').setAttribute('opacity',s/100);
+$('#gl1').textContent=s<20?'CO₂ 매우 많음 (1,000~1,600 ppm)':'CO₂ 점차 감소';$('#gl2').textContent=s>80?'O₂ ≈ 21% (현재)':'O₂ 점점 늘어남 (15%~25% 사이)';
+$('#gl3').textContent=s<20?'온실 바다 · 해수면 높음':s>80?'차가운 극지 · 해수면 낮아짐':'냉각 중'}
+$('#a3').oninput=atm;atm();
+/* 4 continents */
+function con(){const s=+$('#a4').value;
+$('#am').setAttribute('transform',`translate(${60-s*.7} 0)`);$('#atl').setAttribute('x',190-s*.3);
+$('#in').setAttribute('transform',`translate(0 ${-s*.85})`);$('#hi').setAttribute('opacity',s>62?Math.min(1,(s-62)/20):0);
+$('#fl').setAttribute('r',s>58&&s<80?(s-58)*2.5:0);
+$('#t4').textContent=s<55?'인도가 북쪽으로 이동 중…':s<80?'💥 인도-유라시아판 충돌!':'히말라야 산맥 융기 · 대서양은 계속 확장'}
+$('#a4').oninput=con;con();let pt;
+$('#pl4').onclick=()=>{clearInterval(pt);$('#a4').value=0;pt=setInterval(()=>{$('#a4').value=+$('#a4').value+1;con();if($('#a4').value>=100)clearInterval(pt)},60)};
+/* 8 extinction */
+let t8=[];
+$('#b8').onclick=()=>{t8.forEach(clearTimeout);t8=[];$('#zz').style.transition='stroke-dashoffset 3s';$('#zz').style.strokeDashoffset=0;
+document.querySelectorAll('#ics .ic').forEach((e,i)=>t8.push(setTimeout(()=>e.classList.add('gone'),800*(i+1))));
+t8.push(setTimeout(()=>{$('#hm').style.opacity=1;$('#t8').textContent='그리고 인류의 조상이 등장해 전 지구로 퍼져 나갔다'},4200))};
+$('#r8').onclick=()=>{t8.forEach(clearTimeout);document.querySelectorAll('#ics .ic').forEach(e=>e.classList.remove('gone'));$('#hm').style.opacity=0;$('#t8').textContent='대형 포유류가 하나씩 사라진다…'};
+</script></body></html>
